@@ -1,10 +1,10 @@
 <h1 align="center">
   <img src="https://avatars1.githubusercontent.com/u/29598503?v=3&s=256" alt="[Project]">
   <br />
-  [Project]
+  Amplifire Editor
 </h1>
 
-<p align="center"><b>This is the snap for [Project]</b>, <i>“Single-line elevator pitch for your amazing snap”</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
+<p align="center"><b>This is the snap for Atomic Amps Amplifire Editor</b>, <i>“Single-line elevator pitch for your amazing snap”</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
 distributions.</p>
 
 <!-- Uncomment and modify this when you are provided a build status badge
@@ -24,9 +24,15 @@ distributions.</p>
 
 <p align="center">Published for <img src="https://raw.githubusercontent.com/anythingcodes/slack-emoji-for-techies/gh-pages/emoji/tux.png" align="top" width="24" /> with 💝 by Snapcrafters</p>
 
+
+## Todo
+
+- Add udev rule to chmod 666 the hidraw device
+- Check why the application isn't detecting the usb device
+
 ## Install
 
-    sudo snap install my-snap-name
+    sudo snap install amplifire-editor
 
 <!-- Uncomment and modify this when your snap is available on the store
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/my-snap-name)

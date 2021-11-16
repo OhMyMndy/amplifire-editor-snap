@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Amplifire Editor
+Comment=Amplifire Editor
+Exec=amplifire-editor
+Icon=${SNAP}/meta/gui/amplifire-editor.png
+Categories=Multimedia;
+Terminal=false
+StartupNotify=true
+StartupWMClass=AmplifireEditor.exe
+Keywords=audio

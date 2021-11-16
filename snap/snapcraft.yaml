@@ -1,15 +1,71 @@
-name: my-snap-name # you probably want to 'snapcraft register <name>'
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+name: amplifire-editor
+icon: snap/gui/amplifire-editor.png
+
+base: core18
+version: '6.2.0.1' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Single-line elevator pitch for your amazing snap # 79 char long summary
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  Atomic Amps Amplifire Editor packaged as a Snap package for Linux
 
 confinement: devmode # use 'strict' once you have the right plugs and slots
 
+
+apps:
+  amplifire-editor:
+   extensions: [gnome-3-28]
+   command: bin/sommelier run-exe
+   environment:
+    RUN_EXE: $SNAP/AmplifireEditor.exe
+   plugs:
+    - wayland
+    - x11
+    - opengl
+    - network
+    - home
+    - hardware-observe
+    - raw-usb
+    - hidraw
+  wine:
+    extensions: [gnome-3-28]
+    command: bin/sommelier
+    plugs:
+      - home
+      - network
+
+  winetricks:
+    extensions: [gnome-3-28]
+    command: bin/sommelier winetricks
+    plugs:
+      - home
+      - network
+
+environment:
+  # TRICKS: "dotnet472 mshtml"
+  WINEDLLOVERRIDES: "mshtml="
+
 parts:
-  my-part:
+  sommelier-core:
+    plugin: make
+    source: https://github.com/snapcrafters/sommelier-core.git
+    source-branch: "1.0"
+
+
+  amplifire-editor:
     # See 'snapcraft plugins'
-    plugin: nil
+    plugin: dump
+    source-type: zip
+    source: https://atomicamps.com/wp-content/uploads/2019/01/AmplifireEditor_6_2_0_1_Win.zip
+    stage: [AmplifireEditor.exe]
+    build-packages:
+      - curl
+      - unzip
+
+plugs:
+  wine-runtime:
+    interface: content
+    target: $SNAP/wine-runtime
+    default-provider: wine-platform-runtime
+  wine-6-stable:
+    interface: content
+    target: $SNAP/wine-platform
+    default-provider: wine-platform-6-stable
